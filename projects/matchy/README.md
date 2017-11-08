@@ -51,8 +51,8 @@ As we code, save and refresh the browser tab running Matchy. Your work will begi
 ~~~
 
 ## Step 2 - Array Creation
- 1. [ x] Create a variable named `noises` and assign it to an empty array.
- 2. [ x] Using **bracket notation** give `noises` it's first element. A string representing a sound your animal might make.
+ 1. [ ] Create a variable named `noises` and assign it to an empty array.
+ 2. [ ] Using **bracket notation** give `noises` it's first element. A string representing a sound your animal might make.
  3. [ ] Using an array function add another noise to the end of `noises`.
  4. [ ] Go to the array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array?redirectlocale=en-US
  5. [ ] Look through the functions until you find the one that will place an element at the begining of the array.
