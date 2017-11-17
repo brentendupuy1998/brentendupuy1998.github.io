@@ -18,13 +18,29 @@ var _ = require('lodown-brentendupuy1998');
  * 
  *    npm start --prefix ./projects/let-s-get-functional
  */
-
-var maleCount = function(array) {
-
+// MaleCount
+var maleCount = function(customers) {
+    var arr;
+    arr = _.filter(customers, function(customer, index, collection) {
+        if (customer.gender === "male") {
+            return true;
+        }
+    });
+    return arr.length;
 };
 
-var femaleCount;
 
+//Female Count
+var femaleCount = function(customers) {
+    return _.reduce(customers, function(previousResult, customer, index) {
+        if (customer.gender === "female") {
+            return previousResult + 1;
+        } else {
+            return previousResult;
+        }
+    }, 0);
+    
+};
 var oldestCustomer;
 
 var youngestCustomer;
