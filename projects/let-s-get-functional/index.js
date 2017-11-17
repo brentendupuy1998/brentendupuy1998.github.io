@@ -42,11 +42,12 @@ var femaleCount = function(customers) {
     
 };
 var oldestCustomer = function(customers) {
-    return _.reduce(customers, function(previousResult, customer, index) {
-        if (customer.age > customer.age) {
-            return "customer";
-        }
-    }, 0);
+    var customer = _.reduce(customers, function(previousResult, customer, index) {
+        if (customer.age > previousResult.age) {
+            return customer;
+        } else return previousResult;
+    });
+    return customer.name;
 };
 
 
