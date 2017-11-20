@@ -53,25 +53,131 @@ var oldestCustomer = function(customers) {
 
 var youngestCustomer = function(customers) {
     var customer = _.reduce(customers, function(previousResult, customer, index) {
-        if (customer.age > previousResult.age) {
-            return previousResult;
-        } else return customer;
+        if (customer.age < previousResult.age) {
+            return customer;
+        } else return previousResult;
     });
     return customer.name;
 };
 
 
-var averageBalance;
+var averageBalance = function(array) {
+    var totalMoney = _.reduce(array, function(previousSum, currentValue, currentIndex) {
+    var removeSymbols = currentValue.balance.replace("$", "");
+    removeSymbols = removeSymbols.replace(",", "");
+    var numberWithoutSymbols = Number(removeSymbols);
+    return previousSum + numberWithoutSymbols;
+        }, 0);
+        return totalMoney / array.length;
+    };
 
-var firstLetterCount;
 
-var friendFirstLetterCount;
 
-var friendsCount;
+var firstLetterCount = function(array, letter) {
+    var filteredArray = _.filter(array, function(value,index, collection) {
+       if (letter.toLowerCase() === value.name[0].toLowerCase()) {
+           return true;
+       }
+    });
+    return filteredArray.length;
+};
 
-var topThreeTags;
 
-var genderCount;
+
+var friendFirstLetterCount = function(array, customer, letter) {
+  var customerWorkingWith = _.filter(array, function(value, index, collection) {
+      if (customer === value.name) {
+          return true;
+      }
+  });
+  var filteredArray = _.filter(customerWorkingWith[0].friends, function(value, index, collection) {
+  if (letter.toLowerCase() === value.name[0].toLowerCase()) {
+      return true;
+  }
+  });
+  return filteredArray.length;
+};
+
+
+
+var friendsCount = function(array, friendsName) {
+    var listOfCustomerObjects = _.filter(array, function(value, index, collection) {
+      var friendsList = _.pluck(value.friends, 'name'); 
+       return _.contains(friendsList, friendsName);
+    });
+    return _.pluck(listOfCustomerObjects, 'name'); 
+};
+
+    var topThreeTags = function(array) {
+    var customerTagValuesArray = _.map(array, function(value) {
+        return value.tags;
+    });   
+    customerTagValuesArray = _.reduce(customerTagValuesArray, function(previousResult, element, index) {
+         return previousResult.concat(element);
+    }, []);
+
+    var counters = [];
+    var highestTagList = [];
+    
+    
+    _.each(customerTagValuesArray, function(tag, index, collection) {
+        var tagCounter = _.filter(counters, function(value, index, collection) {
+            return value.tag === tag; 
+        });
+        if (tagCounter.length > 0) {
+            tagCounter[0].count++;
+        } else {
+            counters.push({ tag: tag, count: 1 });
+        }
+    });
+
+     function findHighestTag(counters) {
+        var highestIndex = 0;
+        var highest = _.reduce(counters, function(highestTag, tagCounter, index) {
+            if (tagCounter.count > highestTag.count) {
+                highestIndex = index; 
+                return tagCounter;
+            } else {
+                return highestTag;
+            }          
+        });
+        counters.splice(highestIndex, 1);
+        return highest;
+    }
+    
+    var highest = findHighestTag(counters);
+    highestTagList.push(highest.tag);
+    
+    // Second highest
+    highest = findHighestTag(counters);
+    highestTagList.push(highest.tag);
+    
+    // Third highest
+    highest = findHighestTag(counters);
+    highestTagList.push(highest.tag);
+    
+    return highestTagList;
+};
+
+var transgenderCount = function(customers) {
+    return _.reduce(customers, function(previousResult, customer, index) {//reduce array to single value
+        if(customer.gender === 'transgender') {
+            return previousResult + 1; 
+        } else {
+            return previousResult;
+        }
+    }, 0); 
+};
+
+
+var genderCount = function(array) {
+    var genderCountObject = {
+        "male": maleCount(customers),
+        "female": femaleCount(customers),
+        "transgender": transgenderCount(customers)
+    };
+    return genderCountObject;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
