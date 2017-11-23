@@ -8,7 +8,7 @@
 //     console.log(this);
 // };
 
-//It always has to be an object no matter what
+//It always has to be an object no matter what at call time
 
 var age = 2000;
 
