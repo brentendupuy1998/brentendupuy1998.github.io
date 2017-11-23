@@ -8,7 +8,8 @@
 //     console.log(this);
 // };
 
-//It always has to be an object no matter what at call time
+//It always has to be an object no matter 
+//If there is nothing to the left of the dot, it goes to global scope
 
 var age = 2000;
 
