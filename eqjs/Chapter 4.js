@@ -7,25 +7,21 @@ to the following as a nice way to compute the sum of a range of numbers:
 /** Write a range function that takes two arguments, start and end, 
 and returns an array containing all the numbers from start up to (and including) end.
 */
-function range( start, end, increment ) {
-  var result = [];
-  if ( increment == undefined )
-    increment = 1;
-  numLoops = Math.abs( (end - start)/ increment ) + 1 ;
-  for ( var i = 0; i < numLoops; i ++ ) {
-	result.push( start );
-    start += increment;
-  }
-  return result;
-}
-function sum( numArray ) {
-  var arrayTotal = 0;
-   numLoops = numArray.length;
-    for ( var i = 0; i < numLoops; i ++ ) {
-      arrayTotal += numArray[i];
-  }
-return arrayTotal;
-}
+function range(start, end, increment ) {
+
+var range = function(start, end, step) {
+    var arr = [];
+    for (var i = start; step > 1 || step === undefined ? i <= end : i >= end; step ? i = i + step : i++)
+        arr.push(i);
+    return arr;
+};
+
+var sum = function(arr) {
+    return arr.reduce(function(x, y) {
+        return x + y;
+    });
+};
+console.log(sum(range(2, 10)));
 
 // Arrays have a method reverse, which changes the array by inverting the order in which its elements appear. 
 // For this exercise, write two functions, reverseArray and reverseArrayInPlace. 
@@ -41,3 +37,13 @@ var reverseArray = function(arr) {
         newArr.push(arr[i]);
     return newArr;
 };
+
+var reverseArrayInPlace = function(arr) {
+    var temp = 0;
+    for (var i = 0; i < arr.length / 2; i++) {
+        temp = arr[i];
+        arr[i] = arr[arr.length - i - 1];
+        arr[arr.length - i - 1] = temp;
+    }
+};
+console.log(reverseArray(["a, b, c, d"]));

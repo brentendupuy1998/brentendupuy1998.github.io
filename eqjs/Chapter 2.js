@@ -29,3 +29,25 @@ for (var i = 1; i <= 100; i++) {
 At each position of the grid there is either a space or a “#” character. 
 The characters should form a chess board.
 */
+var number = 8;
+var hashtag = '#';
+
+for (var i = 1; i <= number; i++) {
+  var tags = '';
+
+  for (var y = 1; y <= number; y++){
+    if (i % 2) {
+        if (y % 2) {
+            tags = tags + ' ';
+        } else {
+            tags = tags + hashtag;
+        }
+    } else {
+        if (y % 2) {
+            tags = tags + hashtag;
+        } else {
+            tags = tags + ' ';
+        }
+    }
+  }console.log(tags);
+}

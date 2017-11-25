@@ -11,14 +11,26 @@
 //It always has to be an object no matter 
 //If there is nothing to the left of the dot at call time, it goes to global scope
 
-var age = 2000;
+// var age = 2000;
 
-var name = {
-    age: 19
-};
+// var name = {
+//     age: 19
+// };
 
-var hello = function () {
-    console.log(this.age);
-};
+// var hello = function () {
+//     console.log(this.age);
+// };
 
-console.log(hello());
+// console.log(hello());
+
+
+function isObject (other) {
+    return this === other;
+}
+
+var alice = { name: 'Alice', f: isObject };
+var bob = { name: 'Alice', g: isObject };
+
+var result1 = alice.f(alice);
+var result2 = alice.f(bob);
+
