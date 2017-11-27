@@ -116,8 +116,10 @@ var deepEqual = function (x, y) {
 
     return true;
   }
-  else if (x !== y)
+  else if (x !== y) {
     return false;
+  }
   else
     return true;
-};
+    };
+}
