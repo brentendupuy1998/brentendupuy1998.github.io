@@ -33,21 +33,21 @@ var number = 8;
 var hashtag = '#';
 
 for (var i = 1; i <= number; i++) {
-  var tags = '';
+  var myNewTags = '';
 
   for (var y = 1; y <= number; y++){
     if (i % 2) {
         if (y % 2) {
-            tags = tags + ' ';
+            myNewTags = myNewTags + ' ';
         } else {
-            tags = tags + hashtag;
+            myNewTags = myNewTags + hashtag;
         }
     } else {
         if (y % 2) {
-            tags = tags + hashtag;
+            myNewTags = myNewTags + hashtag;
         } else {
-            tags = tags + ' ';
+            myNewTags = myNewTags + ' ';
         }
     }
-  }console.log(tags);
+  }console.log(myNewTags);
 }

@@ -26,6 +26,8 @@ Define a recursive function isEven corresponding to this description. The functi
 Test it on 50 and 75. See how it behaves on -1. Why? Can you think of a way to fix this?
 */
 
+//Math.abs returns functions of their abosulute value
+
 var isEven = function(num) {
     num = Math.abs(num);
     if (num === 0)
@@ -49,17 +51,12 @@ var countBs = function(string) {
   return countChar(string, 'B');
 };
 
-var countChar = function(stringTwo, char) {
-  var arrTwo = [];
-  for(var j = 0; j < stringTwo.length; j++) {
-    if(stringTwo[j] === char) {
-      arrTwo.push(j);
+var countChar = function(newString, char) {
+  var newArray = [];
+  for(var j = 0; j < newString.length; j++) {
+    if(newString[j] === char) {
+      newArray.push(j);
     }
   }
-    return arrTwo.length;
+    return newArray.length;
  };
-    
-console.log(countBs("BBC"));
-// → 2
-console.log(countChar("kakkerlak", "k"));
-// → 4
