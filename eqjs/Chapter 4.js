@@ -46,6 +46,57 @@ console.log(reverseArray(["1,2,3,4"]));
 // to the front of the input list, and nth, which takes a list and a number and returns the element 
 // at the given position in the list, or undefined when there is no such element.
 
+
+function arrayToList(arr){
+	var list = null;
+	for (var i = arr.length -1; i >= 0; i--) {
+		list = {value: arr[i], rest: list};
+	}
+	return list;
+}
+
+function listToArray(list) {
+	var result = [];
+	
+	function listOne(list) {
+		for (var prop in list) {
+			if (Number.isInteger(list[prop])) {
+				result.push(list[prop]);
+			 } else if (typeof list[prop] === "object") {
+				listOne(list[prop]);
+			}
+        }
+		return result;
+	}
+	return listOne(list);
+}
+
+function prepend(element, list){
+	return {
+		value: element,
+		rest: list
+	}
+}
+
+function nth(list, num){
+	if (!list) {
+		return undefined;
+	} if (num === 0) {
+		return list.value;
+	}
+	return nth(list.rest, num -1);
+}
+
+
+
+
+
+
+
+
+
+
+
 // Write a function, deepEqual, that takes two values and returns true only if they are the same value or are
 // objects with the same properties whose values are also equal when compared with a recursive call to deepEqual.
 
