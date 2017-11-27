@@ -46,3 +46,27 @@ console.log(reverseArray(["1,2,3,4"]));
 // to the front of the input list, and nth, which takes a list and a number and returns the element 
 // at the given position in the list, or undefined when there is no such element.
 
+// Write a function, deepEqual, that takes two values and returns true only if they are the same value or are
+// objects with the same properties whose values are also equal when compared with a recursive call to deepEqual.
+
+var deepEqual = function (x, y) {
+  if ((typeof x == "object" && x != null) && (typeof y == "object" && y != null)) {
+    if (Object.keys(x).length != Object.keys(y).length)
+      return false;
+
+    for (var prop in x) {
+      if (y.hasOwnProperty(prop)) {  
+        if (! deepEqual(x[prop], y[prop]))
+         return false;
+      }
+      else
+        return false;
+    }
+
+    return true;
+  }
+  else if (x !== y)
+    return false;
+  else
+    return true;
+};
